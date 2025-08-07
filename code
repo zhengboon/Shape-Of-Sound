@@ -1,0 +1,735 @@
+#include <SoftwareSerial.h>
+#include <DFRobotDFPlayerMini.h>
+// A0 = RX, A1 = TX to DFPlayer
+SoftwareSerial mySerial(A0, A1);  
+DFRobotDFPlayerMini myDFPlayer;
+const int busyPin = A2;
+
+
+// Sensor-specific pin assignments
+const int NUM_SENSORS = 4;
+const int S2_PINS[NUM_SENSORS]  = {5, 7, 9, 11};
+const int S3_PINS[NUM_SENSORS]  = {6, 8, 10, 12};
+const int OUT_PINS[NUM_SENSORS] = {2, 3, 4, 13};
+
+// Timing
+unsigned long lastStepTime = 0;
+const unsigned long STEP_INTERVAL = 1; // 1ms per loop
+unsigned long lastDetectionTime[NUM_SENSORS] = {0};  // Lockout timers
+const unsigned long lockoutDuration = 400; // ms
+String classifyColor(int red, int green, int blue);
+
+// Store RGB values
+int redVals[NUM_SENSORS] = {0};
+int greenVals[NUM_SENSORS] = {0};
+int blueVals[NUM_SENSORS] = {0};
+int avgVals[NUM_SENSORS] = {0};
+String colour = "";
+
+void setup() {
+  Serial.begin(9600);
+  mySerial.begin(9600);      
+  pinMode(busyPin, INPUT);
+
+  for (int i = 0; i < NUM_SENSORS; i++) {
+    pinMode(S2_PINS[i], OUTPUT);
+    pinMode(S3_PINS[i], OUTPUT);
+    pinMode(OUT_PINS[i], INPUT);
+  }
+
+  Serial.println(F("Initializing DFPlayer..."));
+  if (!myDFPlayer.begin(mySerial, true, true)) {
+    Serial.println(F("❌ DFPlayer init failed"));
+    //while (true);
+  }
+    Serial.println(F(" DFPlayer init passed"));
+
+  myDFPlayer.volume(20);
+
+  // Preload all 8 notes (optional preload sequence)
+  myDFPlayer.play(4);  // preload silent track
+  delay(1000);
+  myDFPlayer.play(6);  // preload silent track
+  delay(1000);
+  myDFPlayer.play(7);  // preload silent track
+  delay(1000);
+
+
+  
+}
+
+int readColor(int sensorIndex, bool s2Val, bool s3Val) {
+  digitalWrite(S2_PINS[sensorIndex], s2Val);
+  digitalWrite(S3_PINS[sensorIndex], s3Val);
+  delayMicroseconds(100);
+  return pulseIn(OUT_PINS[sensorIndex], LOW, 5000);
+}
+
+void loop() {
+  unsigned long now = millis();
+
+  if (now - lastStepTime >= STEP_INTERVAL) {
+    lastStepTime = now;
+
+    for (int i = 0; i < NUM_SENSORS; i++) {
+      redVals[i]   = readColor(i, LOW, LOW);
+      greenVals[i] = readColor(i, HIGH, HIGH);
+      blueVals[i]  = readColor(i, LOW, HIGH);
+      avgVals[i]   = (redVals[i] + greenVals[i] + blueVals[i]) / 3;
+    }
+
+    for (int i = 0; i < NUM_SENSORS; i++) {
+    int brightness = avgVals[i];
+      if (brightness < 40 && brightness > 10) {
+      
+          Serial.print(i); Serial.print('\t');
+          Serial.print(redVals[i]); Serial.print('\t');
+          Serial.print(greenVals[i]); Serial.print('\t');
+          Serial.print(blueVals[i]); Serial.print('\t');
+          Serial.print(avgVals[i]);
+          colour = classifyColor(redVals[i],greenVals[i],blueVals[i]);
+          
+          
+          
+          Serial.print(colour);
+          
+          Serial.println();
+          
+          if (now - lastDetectionTime[i] > lockoutDuration) {
+            switch(i){
+              case 0:
+              if (colour == "Pink"){
+                myDFPlayer.play(4); 
+              }
+              else if (colour == "Blue"){
+                myDFPlayer.play(6);
+              }
+              else if (colour == "Green"){
+                myDFPlayer.play(7);
+              }
+              else if (colour == "Yellow"){
+                myDFPlayer.play(8);
+              }
+              break;
+              
+            case 1:
+              if (colour == "Pink"){
+                myDFPlayer.play(4); 
+              }
+              else if (colour == "Blue"){
+                myDFPlayer.play(6);
+              }
+              else if (colour == "Green"){
+                myDFPlayer.play(7);
+              }
+              else if (colour == "Yellow"){
+                myDFPlayer.play(8);
+              }
+              break;
+
+              case 2:
+              if (colour == "Pink"){
+                myDFPlayer.play(4); 
+              }
+              else if (colour == "Blue"){
+                myDFPlayer.play(6);
+              }
+              else if (colour == "Green"){
+                myDFPlayer.play(7);
+              }
+              else if (colour == "Yellow"){
+                myDFPlayer.play(8);
+              }
+              break;
+
+              case 3:
+              if (colour == "Pink"){
+                myDFPlayer.play(4); 
+              }
+              else if (colour == "Blue"){
+                myDFPlayer.play(6);
+              }
+              else if (colour == "Green"){
+                myDFPlayer.play(7);
+              }
+              else if (colour == "Yellow"){
+                myDFPlayer.play(8);
+              }
+              break;
+            }
+            
+
+          lastDetectionTime[i] = now; // Start lockout
+          
+          }
+        
+      }
+    }
+  }
+}
+#include <math.h>
+/*
+String classifyColor(int red, int green, int blue, bool debug = false) {
+  int votesYellow = 0;
+  int votesWhite = 0;
+
+  // [0a] Glitch Protection
+  if (blue > 2000 && red < 400 && green < 400) {
+    votesWhite += 2; if (debug) Serial.println("[0a] White +2");
+  }
+
+  // [0b] Blue not dominant → suppress yellow
+  if (blue < 650 || blue < red || blue < green) {
+    votesWhite += 1; if (debug) Serial.println("[0b] White +1");
+  }
+
+  // [0c] Bright White Override
+  if (red > 1200 && green > 1200 && blue > 1200 &&
+      abs(red - green) < 250 && abs(green - blue) < 250 &&
+      abs(red - blue) < 250) {
+    votesWhite += 2; if (debug) Serial.println("[0c] White +2");
+  }
+
+  // [0d] Yellow Forgiveness Layer
+  if (blue > 1300 && (blue - red > 200) && (blue - green > 150)) {
+    votesYellow++; if (debug) Serial.println("[0d] Yellow +1");
+  }
+
+  // [0e] Blue-suppressed White patch
+  if (red > blue && green > blue && red > 1000 && green > 800) {
+    votesWhite += 1; if (debug) Serial.println("[0e] White +1");
+  }
+
+  // [0f] Yellow lockout on low brightness
+  int avg = (red + green + blue) / 3;
+  if (avg < 500) {
+    votesWhite += 1; if (debug) Serial.println("[0f] White +1");
+  }
+
+  // [1] Absolute Thresholds
+  if (red < 700 && green > 800 && blue > 1300) {
+    votesYellow++; if (debug) Serial.println("[1a] Yellow +1");
+  }
+  else if (red > 600 && green > 600 && blue > 600 &&
+           red < 1500 && green < 1500 && blue < 1500) {
+    votesWhite++; if (debug) Serial.println("[1b] White +1");
+  }
+
+  // [2] RGB Ratios
+  float rOverG = (float)red / (green + 1);
+  float bOverR = (float)blue / (red + 1);
+  float gOverB = (float)green / (blue + 1);
+  if (rOverG < 0.85 && bOverR > 1.6) {
+    votesYellow++; if (debug) Serial.println("[2a] Yellow +1");
+  }
+  else if (abs(rOverG - gOverB) < 0.2 && abs(gOverB - bOverR) < 0.3) {
+    votesWhite++; if (debug) Serial.println("[2b] White +1");
+  }
+
+  // [3] Brightness & Balance
+  if (avg < 650 && abs(red - green) < 100 && abs(green - blue) < 100) {
+    votesWhite += 2; if (debug) Serial.println("[3a] White +2");
+  }
+  else if (avg > 850 && avg < 1150) {
+    votesWhite++; if (debug) Serial.println("[3b] White +1");
+  }
+  else if (avg > 950 && blue > red && blue > green) {
+    votesYellow++; if (debug) Serial.println("[3c] Yellow +1");
+  }
+
+  // [4] Dominant Blue (stricter logic)
+  if (blue > 1100 && red < 800 && green < 800) {
+    votesYellow++; if (debug) Serial.println("[4] Yellow +1");
+  }
+
+  // [5] Euclidean Distance (white-biased)
+  float distYellow = sq(red - 559) + sq(green - 906) + sq(blue - 1427);
+  float distWhite  = sq(red - 943) + sq(green - 1016) + sq(blue - 913);
+  if (distWhite * 0.95 < distYellow) {
+    votesWhite++; if (debug) Serial.println("[5] White +1");
+  } else {
+    votesYellow++; if (debug) Serial.println("[5] Yellow +1");
+  }
+
+  // [6] Delta Signatures
+  int drg = red - green;
+  int drb = red - blue;
+  int dgb = green - blue;
+  if (abs(drg) < 100 && abs(drb) < 100 && abs(dgb) < 100) {
+    votesWhite++; if (debug) Serial.println("[6a] White +1");
+  }
+  else if (drg < -250 && dgb < -300) {
+    votesYellow++; if (debug) Serial.println("[6b] Yellow +1");
+  }
+
+  // [7] dB Band
+  float redDB = 20 * log10((float)red + 1);
+  float greenDB = 20 * log10((float)green + 1);
+  float blueDB = 20 * log10((float)blue + 1);
+  float maxDB = max(redDB, max(greenDB, blueDB));
+  float minDB = min(redDB, min(greenDB, blueDB));
+  if ((maxDB - minDB) < 2.5) {
+    votesWhite++; if (debug) Serial.println("[7a] White +1");
+  }
+  else if ((blueDB - redDB > 3) && (blueDB - greenDB > 1.5)) {
+    votesYellow++; if (debug) Serial.println("[7b] Yellow +1");
+  }
+
+  // [8] Saturation
+  float maxRGB = max(red, max(green, blue));
+  float minRGB = min(red, min(green, blue));
+  float saturation = (maxRGB - minRGB) / (maxRGB + 1);
+  if (saturation < 0.1) {
+    votesWhite++; if (debug) Serial.println("[8] White +1");
+  }
+
+  // [9] Pattern Logic
+  bool rDom = red > green && red > blue;
+  bool gDom = green > red && green > blue;
+  bool bDom = blue > red && blue > green;
+  if (bDom && gDom && !rDom && blue > 700) {
+    votesYellow++; if (debug) Serial.println("[9] Yellow +1");
+  }
+
+  if (debug) {
+    Serial.print("Votes — Yellow: ");
+    Serial.print(votesYellow);
+    Serial.print(" | White: ");
+    Serial.println(votesWhite);
+  }
+
+  return (votesYellow >= votesWhite) ? "Yellow" : "White";
+}
+
+*/
+
+#include <math.h>
+
+const int K = 7;
+
+const uint8_t trainingRGB[200][3] = {
+  {54.0,42.0,31.0},
+  {48.0,35.0,25.0},
+  {44.0,31.0,21.0},
+  {50.0,36.0,20.0},
+  {48.0,32.0,20.0},
+  {46.0,33.0,22.0},
+  {64.0,47.0,33.0},
+  {58.0,52.0,39.0},
+  {58.0,49.0,36.0},
+  {60.0,46.0,33.0},
+  {63.0,45.0,32.0},
+  {65.0,48.0,33.0},
+  {59.0,50.0,31.0},
+  {58.0,51.0,38.0},
+  {51.0,36.0,26.0},
+  {52.0,45.0,32.0},
+  {51.0,35.0,25.0},
+  {52.0,41.0,29.0},
+  {60.0,48.0,25.0},
+  {66.0,48.0,33.0},
+  {65.0,47.0,26.0},
+  {46.0,32.0,22.0},
+  {50.0,31.0,21.0},
+  {54.0,39.0,21.0},
+  {56.0,48.0,36.0},
+  {62.0,50.0,36.0},
+  {58.0,49.0,37.0},
+  {60.0,49.0,24.0},
+  {46.0,28.0,19.0},
+  {45.0,27.0,18.0},
+  {55.0,46.0,34.0},
+  {48.0,34.0,23.0},
+  {51.0,38.0,28.0},
+  {41.0,35.0,25.0},
+  {46.0,32.0,22.0},
+  {57.0,36.0,29.0},
+  {57.0,32.0,26.0},
+  {59.0,39.0,26.0},
+  {52.0,42.0,30.0},
+  {50.0,35.0,26.0},
+  {60.0,47.0,33.0},
+  {42.0,27.0,19.0},
+  {51.0,33.0,22.0},
+  {49.0,36.0,25.0},
+  {59.0,54.0,35.0},
+  {53.0,46.0,32.0},
+  {58.0,49.0,37.0},
+  {44.0,29.0,20.0},
+  {59.0,38.0,32.0},
+  {61.0,49.0,34.0},
+  {31.0,25.0,25.0},
+  {37.0,31.0,39.0},
+  {48.0,40.0,44.0},
+  {36.0,29.0,31.0},
+  {44.0,39.0,42.0},
+  {30.0,25.0,32.0},
+  {42.0,33.0,43.0},
+  {33.0,27.0,27.0},
+  {52.0,44.0,50.0},
+  {42.0,26.0,43.0},
+  {48.0,42.0,45.0},
+  {56.0,47.0,41.0},
+  {53.0,46.0,48.0},
+  {52.0,43.0,40.0},
+  {39.0,29.0,32.0},
+  {51.0,46.0,47.0},
+  {47.0,42.0,44.0},
+  {53.0,43.0,34.0},
+  {48.0,38.0,47.0},
+  {51.0,41.0,48.0},
+  {49.0,40.0,48.0},
+  {38.0,31.0,38.0},
+  {41.0,33.0,42.0},
+  {36.0,29.0,37.0},
+  {38.0,31.0,31.0},
+  {38.0,32.0,38.0},
+  {52.0,43.0,40.0},
+  {48.0,39.0,38.0},
+  {46.0,38.0,36.0},
+  {50.0,45.0,47.0},
+  {36.0,29.0,36.0},
+  {34.0,28.0,29.0},
+  {56.0,46.0,41.0},
+  {49.0,41.0,49.0},
+  {39.0,42.0,44.0},
+  {40.0,33.0,41.0},
+  {53.0,43.0,34.0},
+  {49.0,39.0,48.0},
+  {46.0,40.0,45.0},
+  {43.0,37.0,41.0},
+  {45.0,39.0,43.0},
+  {52.0,48.0,48.0},
+  {34.0,25.0,31.0},
+  {46.0,40.0,44.0},
+  {46.0,40.0,44.0},
+  {37.0,27.0,32.0},
+  {33.0,24.0,30.0},
+  {45.0,46.0,47.0},
+  {45.0,35.0,36.0},
+  {50.0,41.0,47.0},
+  {39.0,49.0,35.0},
+  {42.0,56.0,39.0},
+  {44.0,61.0,36.0},
+  {40.0,45.0,31.0},
+  {20.0,29.0,20.0},
+  {40.0,53.0,37.0},
+  {38.0,52.0,36.0},
+  {25.0,33.0,28.0},
+  {40.0,46.0,32.0},
+  {43.0,60.0,42.0},
+  {39.0,49.0,36.0},
+  {33.0,42.0,29.0},
+  {33.0,35.0,32.0},
+  {41.0,47.0,26.0},
+  {41.0,50.0,38.0},
+  {40.0,50.0,38.0},
+  {30.0,42.0,30.0},
+  {34.0,45.0,33.0},
+  {21.0,32.0,22.0},
+  {41.0,46.0,32.0},
+  {46.0,53.0,41.0},
+  {24.0,36.0,25.0},
+  {47.0,55.0,42.0},
+  {25.0,37.0,26.0},
+  {45.0,58.0,41.0},
+  {44.0,43.0,34.0},
+  {24.0,37.0,19.0},
+  {42.0,49.0,39.0},
+  {28.0,39.0,28.0},
+  {26.0,37.0,26.0},
+  {21.0,31.0,22.0},
+  {36.0,52.0,36.0},
+  {46.0,50.0,35.0},
+  {40.0,47.0,33.0},
+  {42.0,51.0,38.0},
+  {35.0,47.0,35.0},
+  {34.0,50.0,34.0},
+  {31.0,39.0,31.0},
+  {26.0,40.0,28.0},
+  {27.0,33.0,27.0},
+  {22.0,30.0,20.0},
+  {43.0,54.0,41.0},
+  {52.0,53.0,30.0},
+  {30.0,44.0,31.0},
+  {41.0,50.0,42.0},
+  {22.0,31.0,22.0},
+  {24.0,38.0,25.0},
+  {48.0,60.0,37.0},
+  {26.0,39.0,28.0},
+  {19.0,28.0,19.0},
+  {20.0,26.0,34.0},
+  {21.0,28.0,34.0},
+  {30.0,34.0,44.0},
+  {37.0,38.0,36.0},
+  {37.0,42.0,46.0},
+  {21.0,25.0,32.0},
+  {31.0,34.0,38.0},
+  {46.0,45.0,40.0},
+  {46.0,49.0,47.0},
+  {46.0,45.0,52.0},
+  {37.0,40.0,37.0},
+  {39.0,38.0,36.0},
+  {26.0,35.0,41.0},
+  {23.0,28.0,30.0},
+  {30.0,39.0,44.0},
+  {19.0,24.0,26.0},
+  {19.0,24.0,32.0},
+  {26.0,32.0,32.0},
+  {39.0,41.0,38.0},
+  {25.0,29.0,34.0},
+  {38.0,40.0,37.0},
+  {39.0,49.0,50.0},
+  {19.0,23.0,31.0},
+  {44.0,47.0,54.0},
+  {26.0,31.0,36.0},
+  {35.0,41.0,46.0},
+  {33.0,37.0,40.0},
+  {36.0,44.0,44.0},
+  {34.0,39.0,45.0},
+  {45.0,44.0,39.0},
+  {43.0,51.0,54.0},
+  {22.0,23.0,27.0},
+  {49.0,52.0,48.0},
+  {22.0,30.0,34.0},
+  {38.0,42.0,43.0},
+  {18.0,23.0,29.0},
+  {30.0,38.0,33.0},
+  {32.0,37.0,35.0},
+  {53.0,51.0,42.0},
+  {42.0,53.0,53.0},
+  {39.0,44.0,48.0},
+  {20.0,27.0,33.0},
+  {19.0,21.0,26.0},
+  {26.0,26.0,29.0},
+  {49.0,47.0,40.0},
+  {33.0,36.0,36.0},
+  {25.0,34.0,38.0},
+  {34.0,37.0,37.0},
+  {19.0,25.0,31.0},
+  {32.0,37.0,43.0},
+};
+
+    const char* trainingLabels[200] = {
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Blue",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Green",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Pink",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+  "Yellow",
+};
+
+    String classifyColor(int r, int g, int b) {
+      int bestIndex = -1;
+      int bestDist = 999999;
+
+      for (int i = 0; i < 200; i++) {
+        int dr = r - trainingRGB[i][0];
+        int dg = g - trainingRGB[i][1];
+        int db = b - trainingRGB[i][2];
+        int dist = dr * dr + dg * dg + db * db;
+
+        if (dist < bestDist) {
+          bestDist = dist;
+          bestIndex = i;
+        }
+      }
+      return String(trainingLabels[bestIndex]);
+    }
+
+
+
