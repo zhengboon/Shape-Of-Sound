@@ -20,8 +20,6 @@ permissions:
 concurrency:
   group: "pages"
   cancel-in-progress: false
-theme: minima
-
 jobs:
   # Build job
   build:
