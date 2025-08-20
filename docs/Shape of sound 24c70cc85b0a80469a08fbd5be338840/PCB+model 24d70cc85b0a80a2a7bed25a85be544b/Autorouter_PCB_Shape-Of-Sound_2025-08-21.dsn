@@ -1,0 +1,1006 @@
+(PCB ''
+  (resolution mil 1000)
+  (structure
+    (boundary(path signal 0 0.2928 -275.59 0 -275.2971 0 -0.2928 0.2928 0 550.8871 0 551.18 -0.2928 551.18 -275.2971 550.8871 -275.59 0.2928 -275.59 )
+    )
+    (via via1 via0
+    )
+    (grid via   0.25)
+    (grid wire   0.25)
+    (grid place   0.25)
+    (rule(clear 1.5798))
+    (rule(clear 1.5798 (type default_smd)))
+    (rule(clear 1.5798 (type smd_smd)))
+    (rule(width 1.9735))
+    (layer 1
+      (type signal)
+    )
+    (layer 2
+      (type signal)
+    )
+
+  )
+
+  (placement
+    (component u1
+      (place u1 0 0 front 0
+      )
+    )
+
+  )
+  (library
+    (image u1
+      (pin p42 42 417.5 -224.5)
+      (pin p57 57 427.5 -224.5)
+      (pin p141 141 74.5 -19.882)
+      (pin p141 156 74.5 -130.118)
+      (pin p141 171 64.658 -19.882)
+      (pin p141 186 54.815 -19.882)
+      (pin p141 201 84.343 -19.882)
+      (pin p141 216 94.185 -19.882)
+      (pin p141 231 84.343 -130.118)
+      (pin p141 246 94.185 -130.118)
+      (pin p141 261 64.658 -130.118)
+      (pin p141 276 54.815 -130.118)
+      (pin p141 360 208.5 -19.882)
+      (pin p141 375 208.5 -130.118)
+      (pin p141 390 198.658 -19.882)
+      (pin p141 405 188.815 -19.882)
+      (pin p141 420 218.343 -19.882)
+      (pin p141 435 228.185 -19.882)
+      (pin p141 450 218.343 -130.118)
+      (pin p141 465 228.185 -130.118)
+      (pin p141 480 198.658 -130.118)
+      (pin p141 495 188.815 -130.118)
+      (pin p141 579 342 -19.882)
+      (pin p141 594 342 -130.118)
+      (pin p141 609 332.158 -19.882)
+      (pin p141 624 322.315 -19.882)
+      (pin p141 639 351.843 -19.882)
+      (pin p141 654 361.685 -19.882)
+      (pin p141 669 351.843 -130.118)
+      (pin p141 684 361.685 -130.118)
+      (pin p141 699 332.158 -130.118)
+      (pin p141 714 322.315 -130.118)
+      (pin p141 798 476 -19.882)
+      (pin p141 813 476 -130.118)
+      (pin p141 828 466.158 -19.882)
+      (pin p141 843 456.315 -19.882)
+      (pin p141 858 485.843 -19.882)
+      (pin p141 873 495.685 -19.882)
+      (pin p141 888 485.843 -130.118)
+      (pin p141 903 495.685 -130.118)
+      (pin p141 918 466.158 -130.118)
+      (pin p141 933 456.315 -130.118)
+      (pin p141 1020 509.5 -178)
+      (pin p141 1035 499.5 -178)
+      (pin p141 1050 489.5 -178)
+      (pin p141 1065 479.5 -178)
+      (pin p1170 1170 285 -185)
+      (pin p1185 1185 285 -175)
+      (pin p1170 1200 285 -195)
+      (pin p1170 1215 285 -205)
+      (pin p1170 1230 285 -215)
+      (pin p1170 1245 285 -225)
+      (pin p1170 1260 285 -235)
+      (pin p1170 1275 285 -245)
+      (pin p1170 1290 355 -245)
+      (pin p1170 1305 355 -235)
+      (pin p1170 1320 355 -225)
+      (pin p1170 1335 355 -215)
+      (pin p1170 1350 355 -205)
+      (pin p1170 1365 355 -195)
+      (pin p1170 1380 355 -185)
+      (pin p1170 1395 355 -175)
+      (pin p1872 1872 188 -179.5)
+      (pin p1887 1887 178 -239.5)
+      (pin p1887 1902 158 -239.5)
+      (pin p1887 1917 138 -239.5)
+      (pin p1887 1932 118 -239.5)
+      (pin p1887 1947 98 -239.5)
+      (pin p1887 1962 78 -239.5)
+      (pin p1887 1977 58 -239.5)
+      (pin p1887 1992 48 -179.5)
+      (pin p1887 2007 68 -179.5)
+      (pin p1887 2022 88 -179.5)
+      (pin p1887 2037 108 -179.5)
+      (pin p1887 2052 128 -179.5)
+      (pin p1887 2067 148 -179.5)
+      (pin p1887 2082 168 -179.5)
+      (pin p1887 2097 178 -179.5)
+      (pin p1887 2112 158 -179.5)
+      (pin p1887 2127 138 -179.5)
+      (pin p1887 2142 118 -179.5)
+      (pin p1887 2157 98 -179.5)
+      (pin p1887 2172 78 -179.5)
+      (pin p1887 2187 58 -179.5)
+      (pin p1887 2202 48 -239.5)
+      (pin p1887 2217 68 -239.5)
+      (pin p1887 2232 88 -239.5)
+      (pin p1887 2247 108 -239.5)
+      (pin p1887 2262 128 -239.5)
+      (pin p1887 2277 148 -239.5)
+      (pin p1887 2292 168 -239.5)
+      (pin p1872 2307 188 -239.5)
+      (pin p4016 4016 166.455 -128.894)
+      (pin p4016 4019 342.192 -143.95)
+      (pin p4016 4070 85.556 -43.115)
+      (pin p4016 4088 142.096 -162.775)
+      (pin p4016 4097 155.925 -145.31)
+      (pin p4016 4106 145.59 -171.611)
+      (pin p4016 4118 107.024 -133.797)
+      (pin p4016 4121 287.715 -74.167)
+      (pin p4016 4130 224.679 -141.544)
+      (pin p4016 4139 227.183 -144.901)
+      (pin p4016 4151 105.973 -66.008)
+      (pin p4016 4154 427.335 -66.008)
+      (pin p4016 4166 366.505 -251.125)
+      (pin p4016 4184 108.832 -225.189)
+      (pin p93 93 23.319 -23.819)
+      (pin p93 105 125.681 -23.819)
+      (pin p93 117 125.681 -126.181)
+      (pin p93 129 23.319 -126.181)
+      (pin p93 312 157.319 -23.819)
+      (pin p93 324 259.681 -23.819)
+      (pin p93 336 259.681 -126.181)
+      (pin p93 348 157.319 -126.181)
+      (pin p93 531 290.819 -23.819)
+      (pin p93 543 393.181 -23.819)
+      (pin p93 555 393.181 -126.181)
+      (pin p93 567 290.819 -126.181)
+      (pin p93 750 424.819 -23.819)
+      (pin p93 762 527.181 -23.819)
+      (pin p93 774 527.181 -126.181)
+      (pin p93 786 424.819 -126.181)
+    )
+
+    (padstack via1
+      (shape(circle 1 8))
+      (shape(circle 2 8))
+    )
+    (padstack via0
+      (shape(circle 1 2.4016))
+      (shape(circle 2 2.4016))
+    )
+
+    (padstack p42
+      (shape(polygon 1 0.01 3.1 3.1 3.1 -3.1 -3.1 -3.1 -3.1 3.1))
+      (shape(polygon 2 0.01 3.1 3.1 3.1 -3.1 -3.1 -3.1 -3.1 3.1))
+    )
+    (padstack p57
+      (shape(circle 1 6.2 0 0))
+      (shape(circle 2 6.2 0 0))
+    )
+    (padstack p141
+      (shape(circle 1 6 0 0))
+      (shape(circle 2 6 0 0))
+    )
+    (padstack p1170
+      (shape(circle 1 5.937 0 0))
+      (shape(circle 2 5.937 0 0))
+    )
+    (padstack p1185
+      (shape(polygon 1 0.01 2.9685 2.9685 2.9685 -2.9685 -2.9685 -2.9685 -2.9685 2.9685))
+      (shape(polygon 2 0.01 2.9685 2.9685 2.9685 -2.9685 -2.9685 -2.9685 -2.9685 2.9685))
+    )
+    (padstack p1872
+      (shape(polygon 1 0.01 -3.1496 3.1496 3.1496 3.1496 3.1496 -3.1496 -3.1496 -3.1496))
+      (shape(polygon 2 0.01 -3.1496 3.1496 3.1496 3.1496 3.1496 -3.1496 -3.1496 -3.1496))
+    )
+    (padstack p1887
+      (shape(circle 1 6.2992 0 0))
+      (shape(circle 2 6.2992 0 0))
+    )
+    (padstack p4016
+      (shape(circle 1 2.4016 0 0))
+      (shape(circle 2 2.4016 0 0))
+    )
+    (padstack p93
+      (shape(circle 1 8 0 0))
+      (shape(circle 2 8 0 0))
+    )
+  )
+  (network
+    (net VCC
+      (pins u1-42 u1-156 u1-186 u1-261 u1-276 u1-375 u1-405 u1-480 u1-495 u1-594 u1-624 u1-699 u1-714 u1-813 u1-843 u1-918 u1-933 u1-1185 u1-2307 u1-4016 u1-4019)
+    )
+    (net GND
+      (pins u1-57 u1-216 u1-246 u1-435 u1-465 u1-654 u1-684 u1-873 u1-903 u1-1035 u1-1260 u1-1305 u1-1887 u1-2112 u1-4070)
+    )
+    (net U7_10
+      (pins u1-360 u1-2157 u1-4088)
+    )
+    (net U7_11
+      (pins u1-390 u1-2022 u1-4097)
+    )
+    (net U7_6
+      (pins u1-420 u1-2127 u1-4106)
+    )
+    (net U7_12
+      (pins u1-579 u1-2172 u1-4118 u1-4121)
+    )
+    (net U7_13
+      (pins u1-609 u1-2007 u1-4130)
+    )
+    (net U7_7
+      (pins u1-639 u1-2052 u1-4139)
+    )
+    (net U7_14
+      (pins u1-798 u1-2187 u1-4151 u1-4154)
+    )
+    (net U7_16
+      (pins u1-858 u1-2202 u1-4166)
+    )
+    (net U7_19
+      (pins u1-1200 u1-1962 u1-4184)
+    )
+    (net U7_21
+      (pins u1-1395 u1-1947)
+    )
+    (net U7_5
+      (pins u1-201 u1-2067)
+    )
+    (net U7_9
+      (pins u1-171 u1-2037)
+    )
+    (net U7_8
+      (pins u1-141 u1-2142)
+    )
+    (net U7_20
+      (pins u1-1170 u1-2232)
+    )
+    (net U6_5
+      (pins u1-1065 u1-1230)
+    )
+    (net U6_4
+      (pins u1-1050 u1-1215)
+    )
+    (net U7_15
+      (pins u1-828 u1-1992)
+    )
+    (net U1_7
+      (pins u1-231)
+    )
+    (net U2_7
+      (pins u1-450)
+    )
+    (net U3_7
+      (pins u1-669)
+    )
+    (net U4_7
+      (pins u1-888)
+    )
+    (net U5_1
+      (pins u1-1020)
+    )
+    (net U6_6
+      (pins u1-1245)
+    )
+    (net U6_8
+      (pins u1-1275)
+    )
+    (net U6_9
+      (pins u1-1290)
+    )
+    (net U6_11
+      (pins u1-1320)
+    )
+    (net U6_12
+      (pins u1-1335)
+    )
+    (net U6_13
+      (pins u1-1350)
+    )
+    (net U6_14
+      (pins u1-1365)
+    )
+    (net U6_15
+      (pins u1-1380)
+    )
+    (net U7_1
+      (pins u1-1872)
+    )
+    (net U7_27
+      (pins u1-1902)
+    )
+    (net U7_25
+      (pins u1-1917)
+    )
+    (net U7_23
+      (pins u1-1932)
+    )
+    (net U7_17
+      (pins u1-1977)
+    )
+    (net U7_3
+      (pins u1-2082)
+    )
+    (net U7_2
+      (pins u1-2097)
+    )
+    (net U7_18
+      (pins u1-2217)
+    )
+    (net U7_22
+      (pins u1-2247)
+    )
+    (net U7_24
+      (pins u1-2262)
+    )
+    (net U7_26
+      (pins u1-2277)
+    )
+    (net U7_28
+      (pins u1-2292)
+    )
+    (class VCC VCC
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class GND GND
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_10 U7_10
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_11 U7_11
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_6 U7_6
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_12 U7_12
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_13 U7_13
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_7 U7_7
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_14 U7_14
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_16 U7_16
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_19 U7_19
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_21 U7_21
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_5 U7_5
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_9 U7_9
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_8 U7_8
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_20 U7_20
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U6_5 U6_5
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U6_4 U6_4
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_15 U7_15
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U1_7 U1_7
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U2_7 U2_7
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U3_7 U3_7
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U4_7 U4_7
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U5_1 U5_1
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U6_6 U6_6
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U6_8 U6_8
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U6_9 U6_9
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U6_11 U6_11
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U6_12 U6_12
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U6_13 U6_13
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U6_14 U6_14
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U6_15 U6_15
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_1 U7_1
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_27 U7_27
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_25 U7_25
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_23 U7_23
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_17 U7_17
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_3 U7_3
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_2 U7_2
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_18 U7_18
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_22 U7_22
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_24 U7_24
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_26 U7_26
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+    (class U7_28 U7_28
+      (circuit 
+        (use_via via0)
+      )
+      (rule 
+        (width 1.9685)
+        (clearance 1.5748)
+      )
+    )
+
+  )
+
+   (wiring
+    (wire(path 2 1.9685 98 -239.5 109.625 -251.125 286.925 -251.125 320.793 -217.257 320.793 -209.207 355 -175 )
+      (net U7_21)
+      (type protect)
+    )
+    (wire(path 2 1.9685 78 -239.5 92.311 -225.189 108.832 -225.189 )
+      (net U7_19)
+      (type protect)
+    )
+    (wire(path 2 1.9685 485.843 -19.882 366.505 -139.22 366.505 -251.125 )
+      (net U7_16)
+      (type protect)
+    )
+    (wire(path 2 1.9685 476 -19.882 429.874 -66.008 427.335 -66.008 )
+      (net U7_14)
+      (type protect)
+    )
+    (wire(path 2 1.9685 105.973 -66.008 105.973 -129.522 58 -177.495 58 -179.5 )
+      (net U7_14)
+      (type protect)
+    )
+    (wire(path 2 1.9685 351.843 -19.882 351.843 -20.241 227.183 -144.901 )
+      (net U7_7)
+      (type protect)
+    )
+    (wire(path 2 1.9685 332.158 -19.882 279.669 -72.371 279.669 -86.554 224.679 -141.544 )
+      (net U7_13)
+      (type protect)
+    )
+    (wire(path 2 1.9685 107.024 -133.797 78 -162.821 78 -179.5 )
+      (net U7_12)
+      (type protect)
+    )
+    (wire(path 2 1.9685 342 -19.882 287.715 -74.167 )
+      (net U7_12)
+      (type protect)
+    )
+    (wire(path 2 1.9685 145.59 -171.611 159.691 -157.51 159.691 -146.043 218.343 -87.391 218.343 -19.882 )
+      (net U7_6)
+      (type protect)
+    )
+    (wire(path 2 1.9685 155.925 -145.31 155.925 -144.751 198.658 -102.018 198.658 -19.882 )
+      (net U7_11)
+      (type protect)
+    )
+    (wire(path 2 1.9685 208.5 -19.882 202.689 -14.071 185.835 -14.071 142.096 -57.81 142.096 -162.775 )
+      (net U7_10)
+      (type protect)
+    )
+    (wire(path 2 1.9685 84.343 -19.882 137.027 -72.566 137.027 -168.527 148 -179.5 )
+      (net U7_5)
+      (type protect)
+    )
+    (wire(path 2 1.9685 108 -179.5 110.79 -176.71 110.79 -63.022 86.342 -38.574 83.35 -38.574 64.658 -19.882 )
+      (net U7_9)
+      (type protect)
+    )
+    (wire(path 2 1.9685 118 -179.5 118 -63.382 74.5 -19.882 )
+      (net U7_8)
+      (type protect)
+    )
+    (wire(path 2 1.9685 158 -179.5 178 -199.5 178 -239.5 )
+      (net GND)
+      (type protect)
+    )
+    (wire(path 2 1.9685 499.5 -178 499.5 -133.933 495.685 -130.118 )
+      (net GND)
+      (type protect)
+    )
+    (wire(path 2 1.9685 495.685 -19.882 495.685 -130.118 )
+      (net GND)
+      (type protect)
+    )
+    (wire(path 2 1.9685 355 -235 361.685 -228.315 361.685 -130.118 )
+      (net GND)
+      (type protect)
+    )
+    (wire(path 2 1.9685 361.685 -130.118 361.685 -19.882 )
+      (net GND)
+      (type protect)
+    )
+    (wire(path 2 1.9685 228.185 -130.118 228.185 -124.428 )
+      (net GND)
+      (type protect)
+    )
+    (wire(path 2 1.9685 228.185 -124.428 228.185 -19.882 )
+      (net GND)
+      (type protect)
+    )
+    (wire(path 2 1.9685 427.5 -224.5 453 -224.5 499.5 -178 )
+      (net GND)
+      (type protect)
+    )
+    (wire(path 2 1.9685 158 -179.5 163.24 -174.26 163.24 -147.515 186.327 -124.428 228.185 -124.428 )
+      (net GND)
+      (type protect)
+    )
+    (wire(path 2 1.9685 94.185 -130.118 85.556 -121.489 85.556 -43.115 )
+      (net GND)
+      (type protect)
+    )
+    (wire(path 2 1.9685 188 -233.789 198.658 -223.131 198.658 -130.118 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 2 1.9685 188 -239.5 188 -233.789 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 2 1.9685 285 -169.47 322.315 -132.155 322.315 -130.118 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 2 1.9685 456.315 -130.118 417.5 -168.933 417.5 -224.5 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 2 1.9685 285 -175 285 -172.235 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 2 1.9685 285 -172.235 285 -169.47 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 2 1.9685 342 -130.118 341.796 -129.914 321.844 -129.914 320.835 -130.923 320.835 -130.924 321.241 -131.33 330.771 -131.33 333.351 -133.91 333.351 -135.109 342.192 -143.95 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 2 1.9685 208.5 -130.118 208.5 -131.869 248.866 -172.235 285 -172.235 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 2 1.9685 166.455 -128.894 166.455 -42.242 188.815 -19.882 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 1 1.9685 285 -195 254.811 -225.189 108.832 -225.189 )
+      (net U7_19)
+      (type protect)
+    )
+    (wire(path 1 1.9685 88 -239.5 138.035 -189.465 280.535 -189.465 285 -185 )
+      (net U7_20)
+      (type protect)
+    )
+    (wire(path 1 1.9685 285 -215 330.647 -169.353 470.853 -169.353 479.5 -178 )
+      (net U6_5)
+      (type protect)
+    )
+    (wire(path 1 1.9685 285 -205 324.733 -165.267 476.767 -165.267 489.5 -178 )
+      (net U6_4)
+      (type protect)
+    )
+    (wire(path 1 1.9685 48 -239.5 59.625 -251.125 366.505 -251.125 )
+      (net U7_16)
+      (type protect)
+    )
+    (wire(path 1 1.9685 466.158 -19.882 466.158 -33.706 362.301 -137.563 89.937 -137.563 48 -179.5 )
+      (net U7_15)
+      (type protect)
+    )
+    (wire(path 1 1.9685 105.973 -66.008 427.335 -66.008 )
+      (net U7_14)
+      (type protect)
+    )
+    (wire(path 1 1.9685 227.183 -144.901 205.543 -166.541 140.959 -166.541 128 -179.5 )
+      (net U7_7)
+      (type protect)
+    )
+    (wire(path 1 1.9685 68 -179.5 105.956 -141.544 224.679 -141.544 )
+      (net U7_13)
+      (type protect)
+    )
+    (wire(path 1 1.9685 107.024 -133.797 166.654 -74.167 287.715 -74.167 )
+      (net U7_12)
+      (type protect)
+    )
+    (wire(path 1 1.9685 138 -179.5 138 -179.201 145.59 -171.611 )
+      (net U7_6)
+      (type protect)
+    )
+    (wire(path 1 1.9685 155.925 -145.31 122.19 -145.31 88 -179.5 )
+      (net U7_11)
+      (type protect)
+    )
+    (wire(path 1 1.9685 142.096 -162.775 114.725 -162.775 98 -179.5 )
+      (net U7_10)
+      (type protect)
+    )
+    (wire(path 1 1.9685 178 -239.5 183.716 -233.784 283.784 -233.784 285 -235 )
+      (net GND)
+      (type protect)
+    )
+    (wire(path 1 1.9685 285 -235 355 -235 )
+      (net GND)
+      (type protect)
+    )
+    (wire(path 1 1.9685 355 -235 417 -235 427.5 -224.5 )
+      (net GND)
+      (type protect)
+    )
+    (wire(path 1 1.9685 85.556 -43.115 101.487 -27.184 )
+      (net GND)
+      (type protect)
+    )
+    (wire(path 1 1.9685 228.185 -19.882 217.65 -30.417 104.72 -30.417 101.487 -27.184 )
+      (net GND)
+      (type protect)
+    )
+    (wire(path 1 1.9685 101.487 -27.184 94.185 -19.882 )
+      (net GND)
+      (type protect)
+    )
+    (wire(path 1 1.9685 456.315 -130.118 466.158 -130.118 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 1 1.9685 466.158 -130.118 476 -130.118 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 1 1.9685 322.315 -130.118 332.158 -130.118 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 1 1.9685 332.158 -130.118 342 -130.118 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 1 1.9685 456.315 -19.882 450.373 -13.94 328.257 -13.94 322.315 -19.882 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 1 1.9685 198.658 -130.118 208.5 -130.118 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 1 1.9685 322.315 -19.882 316.431 -13.998 194.699 -13.998 188.815 -19.882 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 1 1.9685 54.815 -130.118 64.658 -130.118 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 1 1.9685 64.658 -130.118 74.5 -130.118 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 1 1.9685 456.315 -130.118 442.483 -143.95 342.192 -143.95 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 1 1.9685 198.658 -130.118 188.815 -130.118 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 1 1.9685 188.815 -130.118 167.679 -130.118 166.455 -128.894 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 1 1.9685 188.815 -19.882 183.033 -14.1 60.597 -14.1 54.815 -19.882 )
+      (net VCC)
+      (type protect)
+    )
+    (wire(path 1 1.9685 54.815 -19.882 54.815 -130.118 )
+      (net VCC)
+      (type protect)
+    )
+    )
+
+)
